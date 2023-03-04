@@ -1,11 +1,8 @@
-import React, { useState, createContext, useEffect, useContext } from "react";
+import React, { useState, createContext, useEffect, useContext } from 'react';
 import { isDevelopment } from '../../utils/env';
 import { AuthenticationContext } from '../authentication/authentication.context';
 
-import {
-  driveImagesRequest,
-  driveImagesTransform,
-} from "./driveImages.service";
+import { driveImagesRequest, driveImagesTransform } from './driveImages.service';
 
 export const DriveImagesContext = createContext();
 
@@ -13,13 +10,12 @@ export const DriveImagesContextProvider = ({ children }) => {
   const [driveImages, setDriveImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { user, isAuthenticated } = useContext(AuthenticationContext)
+  const { user, isAuthenticated } = useContext(AuthenticationContext);
 
-
-  const retrieveDriveImages = (user) => {
-    console.log('retrieveDriveImages...')
+  const retrieveDriveImages = user => {
+    console.log('retrieveDriveImages...');
     if (!user?.uid && !isDevelopment) {
-      return
+      return;
     }
     // initialize variables
     setIsLoading(true);
@@ -28,12 +24,12 @@ export const DriveImagesContextProvider = ({ children }) => {
     // make request
     driveImagesRequest(user?.uid)
       .then(results => driveImagesTransform({ results }))
-      .then((results) => {
-        console.log({ transformedFetch: results.map(x => x.name) })
+      .then(results => {
+        console.log({ transformedFetch: results.map(x => x.name) });
         setIsLoading(false);
         setDriveImages(results);
       })
-      .catch((err) => {
+      .catch(err => {
         console.error('Error fetching the data', err);
         setIsLoading(false);
         setError(err);

@@ -18,3 +18,5 @@ web-build/
 
 .env.json
 firebase-debug.log
+
+.vscode

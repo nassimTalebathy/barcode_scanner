@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { ActivityIndicator, MD3Colors } from "react-native-paper";
+import React, { useState, useContext } from 'react';
+import { ActivityIndicator, MD3Colors } from 'react-native-paper';
 
 import {
   AccountBackground,
@@ -9,11 +9,10 @@ import {
   AuthInput,
   ErrorContainer,
   Title,
-} from "../components/account.styles";
-import { Text } from "../../../components/typography/text.component";
-import { Spacer } from "../../../components/spacer/spacer.component";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-
+} from '../components/account.styles';
+import { Text } from '../../../components/typography/text.component';
+import { Spacer } from '../../../components/spacer/spacer.component';
+import { AuthenticationContext } from '../../../services/authentication/authentication.context';
 
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -30,7 +29,7 @@ export const LoginScreen = ({ navigation }) => {
           textContentType="emailAddress"
           keyboardType="email-address"
           autoCapitalize="none"
-          onChangeText={(u) => setEmail(u)}
+          onChangeText={u => setEmail(u)}
         />
         <Spacer size="large">
           <AuthInput
@@ -39,7 +38,7 @@ export const LoginScreen = ({ navigation }) => {
             textContentType="password"
             secureTextEntry
             autoCapitalize="none"
-            onChangeText={(p) => setPassword(p)}
+            onChangeText={p => setPassword(p)}
           />
         </Spacer>
         {error && (
@@ -49,11 +48,7 @@ export const LoginScreen = ({ navigation }) => {
         )}
         <Spacer size="large">
           {!isLoading ? (
-            <AuthButton
-              icon="lock-open-outline"
-              mode="contained"
-              onPress={() => onLogin(email, password)}
-            >
+            <AuthButton icon="lock-open-outline" mode="contained" onPress={() => onLogin(email, password)}>
               Login
             </AuthButton>
           ) : (

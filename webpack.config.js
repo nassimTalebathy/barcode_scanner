@@ -3,7 +3,7 @@ const createExpoWebpackConfigAsync = require('@expo/webpack-config');
 // Expo CLI will await this method so you can optionally return a promise.
 module.exports = async function (env, argv) {
   const config = await createExpoWebpackConfigAsync(env, argv);
-  config.stats = { warnings: false }
+  config.stats = { warnings: false };
 
   // // Maybe you want to turn off compression in dev mode.
   // if (config.mode === 'development') {

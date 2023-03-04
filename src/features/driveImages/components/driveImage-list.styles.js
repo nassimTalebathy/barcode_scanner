@@ -1,8 +1,8 @@
-import styled from "styled-components/native";
-import { FlatList } from "react-native";
-import { Button } from "react-native-paper";
+import styled from 'styled-components/native';
+import { FlatList } from 'react-native';
+import { Button } from 'react-native-paper';
 // import { theme } from
-import { theme } from "../../../infrastructure/theme";
+import { theme } from '../../../infrastructure/theme';
 
 export const DriveImageList = styled(FlatList).attrs({
   contentContainerStyle: {
@@ -13,7 +13,7 @@ export const DriveImageList = styled(FlatList).attrs({
 export const OrderButton = styled(Button).attrs({
   color: theme.colors.brand.primary,
 })`
-  padding: ${(props) => props.theme.space[2]};
+  padding: ${props => props.theme.space[2]};
   width: 80%;
   align-self: center;
 `;

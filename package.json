@@ -8,7 +8,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "start:prod": "yarn expo start --no-dev --minify",
-    "run": "expo run"
+    "run": "expo run",
+    "format:check": "prettier --check './**/*.js'",
+    "format:fix": "prettier --write './**/*.js'"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
@@ -32,6 +34,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@expo/webpack-config": "^18.0.1",
+    "prettier": "^2.8.4",
     "react-native-web": "^0.18.12",
     "react-native-webview": "11.26.0"
   },

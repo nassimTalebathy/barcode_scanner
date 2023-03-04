@@ -1,19 +1,18 @@
-import React, { useContext } from "react";
-import styled from "styled-components/native";
-import { ActivityIndicator, MD3Colors } from "react-native-paper";
-import { MdArrowLeft } from "react-icons/md";
+import React, { useContext } from 'react';
+import styled from 'styled-components/native';
+import { ActivityIndicator, MD3Colors } from 'react-native-paper';
+import { MdArrowLeft } from 'react-icons/md';
 
+import { FadeInView } from '../../../components/animations/fade.animation';
+import { SafeArea } from '../../../components/utility/safe-area.component';
+import { Spacer } from '../../../components/spacer/spacer.component';
+import { Text } from '../../../components/typography/text.component';
 
-import { FadeInView } from "../../../components/animations/fade.animation";
-import { SafeArea } from "../../../components/utility/safe-area.component";
-import { Spacer } from "../../../components/spacer/spacer.component";
-import { Text } from "../../../components/typography/text.component";
+import { DriveImagesContext } from '../../../services/driveImages/driveImages.context';
 
-import { DriveImagesContext } from "../../../services/driveImages/driveImages.context";
+import { DriveImageInfoCard } from '../components/driveImage-info-card.component';
 
-import { DriveImageInfoCard } from "../components/driveImage-info-card.component";
-
-import { DriveImageList } from "../components/driveImage-list.styles";
+import { DriveImageList } from '../components/driveImage-list.styles';
 
 const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
@@ -25,9 +24,7 @@ const LoadingContainer = styled.View`
 `;
 
 export const DriveImagesScreen = () => {
-  const { isLoading, driveImages, error: driveImageError } = useContext(
-    DriveImagesContext
-  );
+  const { isLoading, driveImages, error: driveImageError } = useContext(DriveImagesContext);
   const hasError = !!driveImageError;
 
   return (
@@ -40,10 +37,7 @@ export const DriveImagesScreen = () => {
       )}
       {hasError ? (
         <Spacer position="left" size="large">
-          <Text variant="error">
-            Something went wrong retrieving the error -
-            {JSON.stringify(driveImageError)}
-          </Text>
+          <Text variant="error">Something went wrong retrieving the error -{JSON.stringify(driveImageError)}</Text>
         </Spacer>
       ) : (
         <DriveImageList
@@ -57,7 +51,7 @@ export const DriveImagesScreen = () => {
               </Spacer>
             );
           }}
-          keyExtractor={(item) => item.name}
+          keyExtractor={item => item.name}
         />
       )}
     </SafeArea>
