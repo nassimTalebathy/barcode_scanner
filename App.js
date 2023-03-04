@@ -7,9 +7,9 @@ import { getAuth } from 'firebase/auth';
 import { theme } from './src/infrastructure/theme';
 import { Navigation } from './src/infrastructure/navigation';
 import { AuthenticationContextProvider } from './src/services/authentication/authentication.context';
-import { isDevelopment } from './src/utils/env';
+import { isDevelopment, env } from './src/utils/env';
 
-const env = require('./.env.json');
+console.log({ isDevelopment });
 
 let app;
 let auth;

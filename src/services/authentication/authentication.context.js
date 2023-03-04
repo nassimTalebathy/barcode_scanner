@@ -34,10 +34,14 @@ export const AuthenticationContextProvider = ({ app, auth, children }) => {
       console.log('Logging in with email and password');
       // validate
       if (!email || !password || email === '' || password === '') {
-        throw new Error('Email and password cannot not be blank');
+        setError('Email and password cannot not be blank');
+        setIsLoading(false);
+        return;
       }
       if (env.ALLOWED_EMAILS.includes(email) === false) {
-        throw new Error('Email address not authorised');
+        setError('Email address not authorised');
+        setIsLoading(false);
+        return;
       }
       signInWithEmailAndPassword(auth, email, password)
         .then(u => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import { Text } from '../../../components/typography/text.component';
+import { Linking, TouchableOpacity } from 'react-native';
+import { Text as RNPText } from 'react-native-paper';
 
 import { DriveImageCard, DriveImageCardCover, Info } from './driveImage-info-card.styles';
 
@@ -13,17 +13,19 @@ export const DriveImageInfoCard = ({ driveImage = {} }) => {
   // console.log({ driveImage })
 
   const handleClick = () => {
-    alert(`Name: \n${name}\nURL: \n${path}`);
+    // alert(`Name: \n${name}\nURL: \n${path}`);
   };
 
   return (
-    <TouchableOpacity onPress={handleClick}>
-      <DriveImageCard elevation={5}>
+    <DriveImageCard elevation={5}>
+      <TouchableOpacity onPress={handleClick}>
         <DriveImageCardCover key={name} source={{ uri: path }} />
-        <Info>
-          <Text variant="label">{name}</Text>
-        </Info>
-      </DriveImageCard>
-    </TouchableOpacity>
+      </TouchableOpacity>
+      <Info>
+        <RNPText style={{ color: 'blue', fontStyle: 'italic' }} onPress={() => Linking.openURL(path)} variant="label">
+          {name}
+        </RNPText>
+      </Info>
+    </DriveImageCard>
   );
 };

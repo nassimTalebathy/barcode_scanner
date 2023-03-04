@@ -35,11 +35,12 @@ export const DriveImagesScreen = () => {
           <Loading size={50} animating={true} color={MD3Colors.blue300} />
         </LoadingContainer>
       )}
-      {hasError ? (
+      {hasError && (
         <Spacer position="left" size="large">
           <Text variant="error">Something went wrong retrieving the error -{JSON.stringify(driveImageError)}</Text>
         </Spacer>
-      ) : (
+      )}
+      {!hasError && (
         <DriveImageList
           data={driveImages}
           renderItem={({ item }) => {
