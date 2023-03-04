@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
-import { isDevelopment } from '../../utils/env';
+import { env, isDevelopment } from '../../utils/env';
 
 export const AuthenticationContext = createContext();
 
@@ -21,8 +21,8 @@ export const AuthenticationContextProvider = ({ app, auth, children }) => {
     console.log('Logging in');
     setIsLoading(true);
     // cleaning
-    email = (email || '').trim();
-    password = password || '';
+    email = `${email || ''}`.trim().toLowerCase();
+    password = `${password || ''}`;
     // dev
     if (isDevelopment) {
       setUser({ email, userId: 'asdfasdf' });
@@ -34,7 +34,10 @@ export const AuthenticationContextProvider = ({ app, auth, children }) => {
       console.log('Logging in with email and password');
       // validate
       if (!email || !password || email === '' || password === '') {
-        throw new Error('Email and password must not be blank');
+        throw new Error('Email and password cannot not be blank');
+      }
+      if (env.ALLOWED_EMAILS.includes(email) === false) {
+        throw new Error('Email address not authorised');
       }
       signInWithEmailAndPassword(auth, email, password)
         .then(u => {
@@ -88,8 +91,7 @@ export const AuthenticationContextProvider = ({ app, auth, children }) => {
         error,
         onLogin,
         onLogout,
-      }}
-    >
+      }}>
       {children}
     </AuthenticationContext.Provider>
   );

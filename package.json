@@ -38,5 +38,6 @@
     "react-native-web": "^0.18.12",
     "react-native-webview": "11.26.0"
   },
-  "private": true
+  "private": true,
+  "license": "UNLICENSED"
 }
