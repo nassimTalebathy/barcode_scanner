@@ -6,7 +6,8 @@ import { theme } from '../../../infrastructure/theme';
 
 export const DriveImageList = styled(FlatList).attrs({
   contentContainerStyle: {
-    padding: 16,
+    padding: 10,
+    minWidth: '90%',
   },
 })``;
 

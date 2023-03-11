@@ -11,13 +11,13 @@ export const DriveImageCard = styled(Card)`
   align-self: center;
   overflow-y: true;
   width: 95%;
-  min-height: 300px;
+  min-width: 95%;
 `;
 
 export const DriveImageCardCover = styled(Card.Cover)`
-  padding: ${props => props.theme.space[0]};
-  margin: ${props => props.theme.space[2]};
-  min-height: 70%;
+  padding: ${props => props.theme.space[1]};
+  margin: ${props => props.theme.space[1]};
+  min-height: 80%;
   background-color: ${props => props.theme.colors.bg.primary};
 `;
 
