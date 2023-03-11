@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "bs1",
-    "slug": "bs1",
+    "name": "barcode-scanner",
+    "slug": "barcode-scanner",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "barcodeScanner.toby.com"

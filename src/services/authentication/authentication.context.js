@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
-import { env, isDevelopment } from '../../utils/env';
+import { isDevelopment } from '../../utils/env';
 
 export const AuthenticationContext = createContext();
 
@@ -8,14 +8,6 @@ export const AuthenticationContextProvider = ({ app, auth, children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-
-  // onAuthStateChanged(auth, (usr) => {
-  //   console.log({ usr });
-  //   if (usr) {
-  //     setUser(usr);
-  //   }
-  //   setIsLoading(false);
-  // });
 
   const onLogin = (email, password) => {
     console.log('Logging in');
@@ -38,7 +30,13 @@ export const AuthenticationContextProvider = ({ app, auth, children }) => {
         setIsLoading(false);
         return;
       }
-      if (env.ALLOWED_EMAILS.includes(email) === false) {
+      let { ALLOWED_EMAILS } = process.env;
+      ALLOWED_EMAILS = Array.isArray(ALLOWED_EMAILS)
+        ? ALLOWED_EMAILS
+        : typeof ALLOWED_EMAILS === 'string'
+        ? ALLOWED_EMAILS.split(',')
+        : undefined;
+      if (ALLOWED_EMAILS && !ALLOWED_EMAILS?.includes(email)) {
         setError('Email address not authorised');
         setIsLoading(false);
         return;

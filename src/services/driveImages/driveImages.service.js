@@ -1,12 +1,13 @@
 import { getStorage, ref, list, getDownloadURL } from 'firebase/storage';
 import { isDevelopment } from '../../utils/env';
 
-const env = require('../../../.env.json');
-
 export const driveImagesRequest = async userId => {
-  console.log('driveImagesRequest');
+  console.log('driveImagesRequest', { isDevelopment });
   if (isDevelopment) {
-    return env.MOCK.DRIVE_FILES;
+    return [
+      { path: 'https://drive.google.com/file/d/159reln6lR2amzk2Njp2tkuMey7hTBStE/view?usp=share_link' },
+      { path: 'https://drive.google.com/file/d/15AIlP-wSUA8RjWgui54VIUSA6A83MhxV/view?usp=share_link' },
+    ];
   } else {
     console.log('getting firebase storage');
     const storage = getStorage();

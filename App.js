@@ -7,15 +7,27 @@ import { getAuth } from 'firebase/auth';
 import { theme } from './src/infrastructure/theme';
 import { Navigation } from './src/infrastructure/navigation';
 import { AuthenticationContextProvider } from './src/services/authentication/authentication.context';
-import { isDevelopment, env } from './src/utils/env';
+import { isDevelopment } from './src/utils/env';
 
-console.log({ isDevelopment });
+let firebaseConfig;
+
+if (process.env.FIREBASE_CONFIG_STR) {
+  firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG_STR);
+} else {
+  const env = require('./.env.json');
+  firebaseConfig = JSON.parse(env.FIREBASE_CONFIG_STR);
+}
 
 let app;
 let auth;
 
 if (!isDevelopment) {
-  app = initializeApp(env.firebaseConfig);
+  // console.log(process.env);
+  // console.log({ env, isDevelopment });
+  app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+} else {
+  app = initializeApp(firebaseConfig);
   auth = getAuth(app);
 }
 
